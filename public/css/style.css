@@ -1,0 +1,12 @@
+body{
+  background-color: black;
+  color: white;
+}
+
+canvas{
+  position: absolute;
+}
+
+canvas:last-of-type{
+  position: relative;
+}

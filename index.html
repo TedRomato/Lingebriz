@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="Canvas">
+    <canvas id="BackgroundMatrix" height="500" width="800">
+    </canvas>
+    <canvas id="BackgroundVector" height="500" width="800">
+    </canvas>
+    <canvas id="ForegroundMatrix" height="500" width="800">
+    </canvas>
+    <canvas id="ForegroundVector" height="500" width="800">
+    </canvas>
+    <canvas id="Origin" height="500" width="800">
+    </canvas>
+  </div>
+  <div id="ControlField" class="table">
+    <div class="table">
+      <h4>Vector x: </h4>
+      <label for="VectorX" id="VectorXTag">1</label>
+      <input type="range" id="VectorX" value="1" step="1" min="-15" max="15">
+      <br>
+      <h4>Vector y: </h4>
+      <label for="VectorY" id="VectorYTag">1</label>
+      <input type="range" id="VectorY" value="1" step="1" min="-15" max="15">
+      <br>
+      <h4>Matrix î x: </h4>
+      <label for="MatrixIX" id="MatrixIXTag">1</label>
+      <input type="range" id="MatrixIX" value="1" step="1" min="-15" max="15">
+      <br>
+      <h4>Matrix î y: </h4>
+      <label for="MatrixIY" id="MatrixIYTag">0</label>
+      <input type="range" id="MatrixIY" value="0" step="1" min="-15" max="15">
+      <br>
+      <h4>Matrix ĵ x: </h4>
+      <label for="MatrixJX" id="MatrixJXTag">0</label>
+      <input type="range" id="MatrixJX" value="0" step="1" min="-15" max="15">
+      <br>
+      <h4>Matrix ĵ y: </h4>
+      <label for="MatrixJY" id="MatrixJYTag">1</label>
+      <input type="range" id="MatrixJY" value="1" step="1" min="-15" max="15">
+      <br>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="module" src="scripts/CanvasLayer.js"></script>
+  <script type="module" src="scripts/DataParser.js"></script>
+  <script type="module" src="scripts/MathToCoordinatesConverter.js"></script>
+  <script type="module" src="scripts/Vector2D.js"></script>
+  <script type="module" src="scripts/Matrix2D.js"></script>
+  <script type="module" src="scripts/Main.js"></script>
+</body>
+
+</html>
