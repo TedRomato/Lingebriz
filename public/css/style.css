@@ -73,3 +73,7 @@ canvas:last-of-type{
   position: relative;
   right: 23%;
 }
+
+h2{
+  margin: 0;
+}
