@@ -1,6 +1,8 @@
 body{
   background-color: black;
   color: white;
+  padding-top: 2%;
+  padding-left: 10%;
 }
 
 canvas{
@@ -9,4 +11,65 @@ canvas{
 
 canvas:last-of-type{
   position: relative;
+}
+
+#Canvas{
+  display: inline-block;
+  border-style: solid;
+}
+
+#ControlField{
+  margin-left: 5%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#ControlField h4{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#ControlField h4:first-child{
+  margin-top: 0;
+}
+
+#ValuesField{
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.vectorValues h5{
+  margin: 0;
+  margin-top: 10px;
+  text-align: center;
+  position: relative;
+  width: 35px;
+  left: 13px;
+  top: 20px;
+}
+
+.matrixValues .vectorValues:last-child{
+  position: relative;
+  left: 35px;
+  top: -51px;
+}
+
+.bracketValues{
+  width: 100px;
+  font-family: serif;
+  font-size: 60px;
+  position: absolute;
+}
+
+#VectorValues{
+  position: relative;
+  left: 30px;
+  top: -40px;
+}
+
+#ValuesField{
+  position: relative;
+  right: 23%;
 }
