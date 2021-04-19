@@ -11,13 +11,17 @@ let globalMatrix = Matrix2D.intiFromArray([[1,0],[0,1]]);
 
 let canvasWidth = 800;
 let canvasHeight = 500;
+//change size of grid squares
 let unit = 35;
 let origin = [canvasWidth/2, canvasHeight/2];
 
 let animator = new Animator();
+//turn animation on and off
 let animationOn = true;
 
 
+
+//Initialize all matric layers
 let foregroundVector = new CanvasLayer("#ForegroundVector");
 foregroundVector.setColor("yellow");
 foregroundVector.setLineWidth(3);
@@ -31,17 +35,18 @@ let backgroundMatrix = new CanvasLayer("#BackgroundMatrix");
 backgroundMatrix.setColor("grey");
 displayMatrix(backgroundMatrix, globalMatrix);
 
-
 let originCanvas = new CanvasLayer("#Origin");
 originCanvas.setColor("blue");
 
 let originCircleRadius = 7;
 originCanvas.fillCircle(canvasWidth/2,canvasHeight/2,originCircleRadius);
 
+//animation speed
 let animationChangeValue = 0.1;
 let goalMatrix;
 let goalVector;
 let animationDelay = 10;
+
 
 let matrixAnimationRunning = false;
 let vectorAnimationRunning = false;
