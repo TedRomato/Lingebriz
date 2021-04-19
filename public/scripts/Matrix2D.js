@@ -14,13 +14,8 @@ class Matrix2D{
 
   //[[x1,y1],[x2,y2]]
   static intiFromArray(arr){
-    console.log("init arr");
-    console.log(arr);
-    console.log(typeof arr[0][0]);
     let ihat = Vector2D.initFromArray(arr[0]);
     let jhat = Vector2D.initFromArray(arr[1]);
-    console.log(ihat);
-    console.log(jhat);
     return new Matrix2D(ihat, jhat);
   }
 
@@ -45,7 +40,7 @@ class Matrix2D{
     this.setJ(applyVectorToMatrix(this.getJ()),matrix);
   }
   asArray(){
-    return [getI().asArray(), getJ().asArray()];
+    return [this.getI().asArray(), this.getJ().asArray()];
   }
 }
 

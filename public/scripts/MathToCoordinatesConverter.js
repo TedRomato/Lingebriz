@@ -38,7 +38,7 @@ class MathToCoordinatesConverter {
     lines = lines.concat(this.#makeParallelLines(jLine, origin, -jDifferenceX, jDifferenceY, jAmount));
 
 
-    return lines
+    return lines;
   }
 
 

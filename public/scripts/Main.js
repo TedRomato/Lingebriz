@@ -3,6 +3,7 @@ import {Matrix2D, getBasicMatrixVectorRepresentation} from "./Matrix2D.js"
 import {on2DMatrixChange, on2DVectorChange} from "./DataParser.js"
 import {CanvasLayer} from "./CanvasLayer.js"
 import {MathToCoordinatesConverter} from "./MathToCoordinatesConverter.js"
+import {Animator} from "./Animator.js"
 
 
 let displayedVector  = Vector2D.initFromArray([1,1]);
@@ -13,8 +14,13 @@ let canvasHeight = 500;
 let unit = 35;
 let origin = [canvasWidth/2, canvasHeight/2];
 
+let animator = new Animator();
+let animationOn = true;
+
+
 let foregroundVector = new CanvasLayer("#ForegroundVector");
 foregroundVector.setColor("yellow");
+foregroundVector.setLineWidth(3);
 displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
 
 let foregroundMatrix = new CanvasLayer("#ForegroundMatrix");
@@ -32,25 +38,83 @@ originCanvas.setColor("blue");
 let originCircleRadius = 7;
 originCanvas.fillCircle(canvasWidth/2,canvasHeight/2,originCircleRadius);
 
+let animationChangeValue = 0.1;
+let goalMatrix;
+let goalVector;
+let animationDelay = 10;
+
+let matrixAnimationRunning = false;
+let vectorAnimationRunning = false;
 
 on2DMatrixChange(function(newMatrix){
-  globalMatrix = Matrix2D.intiFromArray(newMatrix);
-  foregroundVector.clear();
-  displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
-//  foregroundVector.drawLine(MathToCoordinatesConverter.vector2DToLine(getBasicMatrixVectorRepresentation(displayedVector,globalMatrix), unit, origin))
-  foregroundMatrix.clear();
-  displayMatrix(foregroundMatrix, globalMatrix);
-//  foregroundMatrix.drawLines(MathToCoordinatesConverter.matrix2DToLines(globalMatrix,unit, origin,canvasWidth/unit, canvasHeight/unit))
+  if(animationOn){
+    goalMatrix = Matrix2D.intiFromArray(newMatrix);
+    if(!matrixAnimationRunning){
+      matrixAnimationRunning = true;
+      matrixAnimationLoop(animationDelay);
+    }
+
+  }else{
+    globalMatrix = Matrix2D.intiFromArray(newMatrix);
+    foregroundVector.clear();
+    displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+    foregroundMatrix.clear();
+    displayMatrix(foregroundMatrix, globalMatrix);
+  }
 })
+
+function matrixAnimationLoop(delay) {
+  setTimeout(function() {
+    if(!animator.checkIfMatrixAnimationIsFinished(globalMatrix, goalMatrix, animationChangeValue)){
+      globalMatrix = animator.getNextChangeStepMatrix(globalMatrix, goalMatrix, animationChangeValue);
+      foregroundVector.clear();
+      displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+      foregroundMatrix.clear();
+      displayMatrix(foregroundMatrix, globalMatrix);
+      matrixAnimationLoop(delay, goalMatrix);
+    }else{
+      globalMatrix = Matrix2D.intiFromArray([goalMatrix.asArray()[0],goalMatrix.asArray()[1]]);
+      foregroundVector.clear();
+      displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+      foregroundMatrix.clear();
+      displayMatrix(foregroundMatrix, globalMatrix);
+      matrixAnimationRunning = false;
+    }
+  }, delay)
+}
 
 on2DVectorChange(function(newVector){
-  displayedVector = Vector2D. initFromArray(newVector);
-  foregroundVector.clear();
-  displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+  if(animationOn){
+    goalVector = Vector2D.initFromArray(newVector);
+    if(!vectorAnimationRunning){
+      vectorAnimationRunning = true;
+      vectorAnimationLoop(animationDelay);
+    }
+  }else{
+    displayedVector = Vector2D.initFromArray(newVector);
+    foregroundVector.clear();
+    displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+  }
 })
 
+function vectorAnimationLoop(delay) {
+  setTimeout(function() {
+    if(!animator.checkIfVectorAnimationFinished(displayedVector, goalVector, animationChangeValue)){
+      displayedVector = animator.getNextChangeStepVector(displayedVector, goalVector, animationChangeValue);
+      foregroundVector.clear();
+      displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+      vectorAnimationLoop(delay, goalVector);
+    }else{
+      displayedVector = Vector2D.initFromArray(goalVector.asArray())
+      foregroundVector.clear();
+      displayVectorInMatrix(displayedVector,globalMatrix,foregroundVector);
+      vectorAnimationRunning = false;
+    }
+  }, delay)
+}
+
 function displayVectorInMatrix(vector,matrix,layer){
-  layer.drawLine(MathToCoordinatesConverter.vector2DToLine(getBasicMatrixVectorRepresentation(vector,matrix), unit, origin));
+  layer.drawArrow(MathToCoordinatesConverter.vector2DToLine(getBasicMatrixVectorRepresentation(vector,matrix), unit, origin));
 }
 
 function displayMatrix(layer,matrix){

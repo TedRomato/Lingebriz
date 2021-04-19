@@ -10,7 +10,6 @@ class Vector2D{
       this.#y = arg2;
     }
     else{
-
       throw new Error("Invalid arguments in Vector2D constructor");
     }
   }
