@@ -4,7 +4,7 @@ You can change values using drag bars. Matrix and vector values are visible in r
 Both Vector, and matrix changes are animated.
 
 Changing vector:
-![vector_animation](https://user-images.githubusercontent.com/59472129/115463219-d8d40880-a22b-11eb-84d1-dcef8cf8baad.gif)
+![vector_animation](https://user-images.githubusercontent.com/59472129/115463483-26e90c00-a22c-11eb-8676-71d8b4f35133.gif)
 Changing matrix:
 ![matrix_animation](https://user-images.githubusercontent.com/59472129/115462617-24d27d80-a22b-11eb-8423-f9fc251e7531.gif)
 
