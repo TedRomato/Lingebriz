@@ -16,6 +16,7 @@ class Animator{
   }
 
   getNextChangeStepMatrix(currentMatrix,goalMatrix, changeValue){
+    //calculate differences of i and j current and goal vectors
     let iVectorXDiff = goalMatrix.getI().getX() - currentMatrix.getI().getX();
     let iVectorYDiff = goalMatrix.getI().getY() - currentMatrix.getI().getY();
     let iDiffVector = new Vector2D(iVectorXDiff, iVectorYDiff);

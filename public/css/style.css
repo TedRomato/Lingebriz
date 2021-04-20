@@ -47,13 +47,14 @@ canvas:last-of-type{
   position: relative;
   width: 35px;
   left: 13px;
-  top: 20px;
+  top: 15px;
+  font-size: 20px;
 }
 
 .matrixValues .vectorValues:last-child{
   position: relative;
   left: 35px;
-  top: -51px;
+  top: -65px;
 }
 
 .bracketValues{
