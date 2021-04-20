@@ -13,17 +13,27 @@ let globalMatrix = Matrix2D.intiFromArray([[1,0],[0,1]]);
 //Canvas parameters
 let canvasWidth = 800;
 let canvasHeight = 500;
+<<<<<<< HEAD
 //side lenght of one grid square
+=======
+//change size of grid squares
+>>>>>>> 2f30aab2a06745ce4d1936f4f44b41ffb38e0363
 let unit = 35;
 //Origin coordinates
 let origin = [canvasWidth/2, canvasHeight/2];
 
 
 let animator = new Animator();
+//turn animation on and off
 let animationOn = true;
 
 
+<<<<<<< HEAD
 //Initialization of canvas layers
+=======
+
+//Initialize all matric layers
+>>>>>>> 2f30aab2a06745ce4d1936f4f44b41ffb38e0363
 let foregroundVector = new CanvasLayer("#ForegroundVector");
 foregroundVector.setColor("yellow");
 foregroundVector.setLineWidth(3);
@@ -45,13 +55,18 @@ originCanvas.setColor("blue");
 let originCircleRadius = 7;
 originCanvas.fillCircle(canvasWidth/2,canvasHeight/2,originCircleRadius);
 
+<<<<<<< HEAD
 //animtion speed values
+=======
+//animation speed
+>>>>>>> 2f30aab2a06745ce4d1936f4f44b41ffb38e0363
 let animationChangeValue = 0.1;
 let animationDelay = 10;
 
 
 let goalMatrix;
 let goalVector;
+
 
 
 let matrixAnimationRunning = false;
